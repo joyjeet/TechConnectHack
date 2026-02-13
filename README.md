@@ -50,8 +50,8 @@ Before setting up the project, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/joyjeet/BrandComm-agent.git
-cd BrandComm-agent
+git clone https://github.com/joyjeet/TechConnectHack.git
+cd TechConnectHack
 ```
 
 ### 2. Deploy to Azure (Recommended for First-Time Setup)
@@ -167,7 +167,7 @@ azd up  # Full deployment (~10-12 minutes)
 ## Project Structure
 
 ```
-BrandComm-agent/
+TechConnectHack/
 ├── agent-webapp/              # Main application directory
 │   ├── backend/               # ASP.NET Core API
 │   │   └── WebApp.Api/        # API endpoints + serves frontend
@@ -245,7 +245,7 @@ For more detailed information, refer to:
 
 ## Contributing
 
-This project is part of the BrandComm-agent initiative. For development guidelines and contribution instructions, please refer to the detailed documentation in the `agent-webapp` directory.
+This project is part of the TechConnectHack initiative. For development guidelines and contribution instructions, please refer to the detailed documentation in the `agent-webapp` directory.
 
 ## License
 
