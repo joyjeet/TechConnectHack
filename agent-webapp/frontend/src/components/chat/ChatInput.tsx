@@ -249,6 +249,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           aria-label="Chat Input"
           aria-describedby={showCounter ? charCounterId : undefined}
           charactersRemainingMessage={() => ``}
+          maxLength={1000}
           disabled={disabled || isStreaming}
           history={true}
           onChange={(_, data) => setInputText(data.value)}
