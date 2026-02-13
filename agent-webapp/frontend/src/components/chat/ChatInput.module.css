@@ -129,3 +129,68 @@
 .cancelButton {
   margin-left: 0.25rem;
 }
+
+.guidance {
+  margin-top: 0.75rem;
+  border: 1px solid var(--colorNeutralStroke2);
+  border-radius: 8px;
+  background: var(--colorNeutralBackground1);
+  box-shadow: var(--shadow2);
+  padding: 0.75rem;
+}
+
+.guidance summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--colorNeutralForeground1);
+  list-style: none;
+}
+
+.guidance summary::-webkit-details-marker {
+  display: none;
+}
+
+.guidanceBody {
+  margin-top: 0.75rem;
+  color: var(--colorNeutralForeground2);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.guidanceIntro {
+  margin: 0 0 0.5rem 0;
+}
+
+.guidanceList {
+  margin: 0 0 0.75rem 1rem;
+  padding: 0;
+}
+
+.guidanceList li {
+  margin: 0.25rem 0;
+}
+
+.guidanceExample {
+  border-top: 1px dashed var(--colorNeutralStroke2);
+  padding-top: 0.5rem;
+}
+
+.guidanceExampleTitle {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--colorNeutralForeground1);
+}
+
+.guidanceExampleLines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  font-family: var(--fontFamilyMonospace, ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace);
+  font-size: 0.8125rem;
+  color: var(--colorNeutralForeground2);
+}
+
+.guidanceExampleLine {
+  white-space: pre-wrap;
+}

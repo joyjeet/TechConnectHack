@@ -63,6 +63,18 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   isStreaming = false,
   onCancelStream,
 }) => {
+  const guidanceExampleLines = [
+    'Platform: LinkedIn',
+    'Audience: Business leaders and IT professionals',
+    'Goal/Purpose: Announce a new feature in Azure AI targeting enterprise adoption',
+    'Tone: Professional, innovative',
+    'Key Message(s): Microsoft is launching "X-Feature," a game-changer in AI automation for enterprise customers. It streamlines operations, boosts productivity, and maintains security.',
+    'Supporting Details: Azure AI "X-Feature" cuts processing times by 50% while allowing seamless third-party integration for enterprise workflows.',
+    'Call to Action (CTA): Learn more and see how it can transform your organization.',
+    'Optional Tags: #AzureAI, #EnterpriseInnovation, #Microsoft',
+    'Additional Notes: Include language about security and integration benefits.',
+  ];
+
   const [inputText, setInputText] = useState<string>("");
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const controlRef = useRef<ImperativeControlPluginRef>(null);
@@ -249,7 +261,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           aria-label="Chat Input"
           aria-describedby={showCounter ? charCounterId : undefined}
           charactersRemainingMessage={() => ``}
-          maxLength={1000}
+          maxLength={2000}
           disabled={disabled || isStreaming}
           history={true}
           onChange={(_, data) => setInputText(data.value)}
@@ -303,6 +315,31 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           </div>
         </div>
       </div>
+      <details className={styles.guidance}>
+        <summary>Prompt guidance</summary>
+        <div className={styles.guidanceBody}>
+          <p className={styles.guidanceIntro}>Use this template for better results:</p>
+          <ul className={styles.guidanceList}>
+            <li><strong>Platform:</strong> (e.g., Twitter/X, LinkedIn, Instagram, Blog)</li>
+            <li><strong>Audience:</strong> (e.g., Developers, IT Pros, General Public, Business leaders)</li>
+            <li><strong>Goal/Purpose:</strong> (e.g., Product promotion, Event announcement, Thought leadership, Highlight company culture)</li>
+            <li><strong>Tone:</strong> (e.g., Professional, Conversational, Enthusiastic, Inspirational)</li>
+            <li><strong>Key Message(s):</strong> (e.g., What do you want the audience to know? A milestone, new feature, insight?)</li>
+            <li><strong>Supporting Details:</strong> (e.g., Why is this exciting? Any data, benefits, or context)</li>
+            <li><strong>Call to Action (CTA):</strong> (e.g., Learn More | Register Now | Follow Us | Download Here)</li>
+            <li><strong>Optional Tags:</strong> (e.g., Hashtags and mentions for social media optimization)</li>
+            <li><strong>Additional Notes:</strong> (e.g., Any visuals or tone sensitivities to keep in mind)</li>
+          </ul>
+          <div className={styles.guidanceExample}>
+            <div className={styles.guidanceExampleTitle}>Example</div>
+            <div className={styles.guidanceExampleLines}>
+              {guidanceExampleLines.map((line) => (
+                <div key={line} className={styles.guidanceExampleLine}>{line}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </details>
       <input
         ref={fileInputRef}
         type="file"
