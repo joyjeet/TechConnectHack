@@ -183,7 +183,8 @@ public class AgentFrameworkService : IDisposable
             }
 
             // Build user message with optional images and files
-            ResponseItem userMessage = BuildUserMessage(message, imageDataUris, fileDataUris);
+            var messageWithTimeContext = AddCurrentTimeContext(message);
+            ResponseItem userMessage = BuildUserMessage(messageWithTimeContext, imageDataUris, fileDataUris);
             options.InputItems.Add(userMessage);
         }
 
@@ -503,6 +504,12 @@ public class AgentFrameworkService : IDisposable
         }
 
         return ResponseItem.CreateUserMessageItem(contentParts);
+    }
+
+    private static string AddCurrentTimeContext(string message)
+    {
+        var timestamp = DateTimeOffset.UtcNow.ToString("yyyy-MM-dd HH:mm:ss 'UTC'");
+        return $"Current date/time (UTC): {timestamp}\n\n{message}";
     }
 
     /// <summary>
