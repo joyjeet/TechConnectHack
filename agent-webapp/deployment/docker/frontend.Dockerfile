@@ -56,10 +56,10 @@ COPY --from=backend-builder /app/publish ./
 COPY --from=frontend-builder /app/frontend/dist ./wwwroot
 
 # Expose port
-EXPOSE 8080
+EXPOSE 80
 
 # Set environment variables
-ENV ASPNETCORE_URLS=http://+:8080
+ENV ASPNETCORE_URLS=http://+:80
 ENV ASPNETCORE_ENVIRONMENT=Production
 
 # Start the .NET API (which will also serve frontend static files from wwwroot)

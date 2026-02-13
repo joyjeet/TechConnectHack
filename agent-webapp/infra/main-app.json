@@ -80,7 +80,7 @@
             "value": "[parameters('webImageName')]"
           },
           "targetPort": {
-            "value": 8080
+            "value": 80
           },
           "env": {
             "value": [
@@ -90,7 +90,7 @@
               },
               {
                 "name": "ASPNETCORE_URLS",
-                "value": "http://+:8080"
+                "value": "http://+:80"
               },
               {
                 "name": "ENTRA_SPA_CLIENT_ID",

@@ -21,7 +21,7 @@ module webApp './core/host/container-app.bicep' = {
     containerAppsEnvironmentId: containerAppsEnvironmentId
     containerRegistryName: containerRegistryName
     containerImage: webImageName
-    targetPort: 8080
+    targetPort: 80
     env: [
       {
         name: 'ASPNETCORE_ENVIRONMENT'
@@ -29,7 +29,7 @@ module webApp './core/host/container-app.bicep' = {
       }
       {
         name: 'ASPNETCORE_URLS'
-        value: 'http://+:8080'
+        value: 'http://+:80'
       }
       {
         name: 'ENTRA_SPA_CLIENT_ID'
