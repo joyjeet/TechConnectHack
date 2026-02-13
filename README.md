@@ -1,8 +1,8 @@
-# TechConnectHack
+# BrandComm-agent
 
 ## Project Overview
 
-TechConnectHack is an AI-powered web application featuring Microsoft Entra ID authentication and Azure AI Foundry Agent Service integration. The application provides a chat interface that connects users with AI agents powered by Azure AI Foundry, enabling intelligent conversations with file upload support and real-time streaming responses.
+BrandComm-agent is an AI-powered web application featuring Microsoft Entra ID authentication and Azure AI Foundry Agent Service integration. The application provides a chat interface that connects users with AI agents powered by Azure AI Foundry, enabling intelligent conversations with file upload support and real-time streaming responses.
 
 **Tech Stack:**
 - **Frontend:** React 19 + TypeScript + Vite
@@ -50,8 +50,8 @@ Before setting up the project, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/joyjeet/TechConnectHack.git
-cd TechConnectHack
+git clone https://github.com/joyjeet/BrandComm-agent.git
+cd BrandComm-agent
 ```
 
 ### 2. Deploy to Azure (Recommended for First-Time Setup)
@@ -167,7 +167,7 @@ azd up  # Full deployment (~10-12 minutes)
 ## Project Structure
 
 ```
-TechConnectHack/
+BrandComm-agent/
 ├── agent-webapp/              # Main application directory
 │   ├── backend/               # ASP.NET Core API
 │   │   └── WebApp.Api/        # API endpoints + serves frontend
@@ -245,7 +245,7 @@ For more detailed information, refer to:
 
 ## Contributing
 
-This project is part of the TechConnectHack initiative. For development guidelines and contribution instructions, please refer to the detailed documentation in the `agent-webapp` directory.
+This project is part of the BrandComm-agent initiative. For development guidelines and contribution instructions, please refer to the detailed documentation in the `agent-webapp` directory.
 
 ## License
 
