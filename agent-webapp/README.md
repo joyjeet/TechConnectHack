@@ -187,6 +187,8 @@ azd deploy  # 3-5 minutes
 **Deployment**: Single container, Azure Container Apps  
 **Local Dev**: Native (no Docker required)
 
+**📖 See [ARCHITECTURE.md](ARCHITECTURE.md) for comprehensive architecture documentation including diagrams, data flows, and design patterns.**
+
 ### Known Limitations
 
 - **Office Documents**: DOCX, PPTX, and XLSX files are not supported for upload. Use PDF, images, or plain text files instead.
@@ -213,6 +215,7 @@ For tracking feature updates, see issue [#14](https://github.com/microsoft-found
 ## Documentation
 
 ### For Developers
+- **`ARCHITECTURE.md`** - Comprehensive architecture documentation (system design, data flows, patterns)
 - `backend/README.md` - ASP.NET Core API setup and configuration
 - `frontend/README.md` - React frontend development
 - `infra/README.md` - Azure infrastructure overview
