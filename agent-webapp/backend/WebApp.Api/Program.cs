@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using WebApp.Api.Models;
 using WebApp.Api.Services;
 using System.Security.Claims;
@@ -100,12 +102,42 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     {
         builder.Configuration.Bind("AzureAd", options);
         var configuredClientId = builder.Configuration["AzureAd:ClientId"];
+        var configuredTenantId = builder.Configuration["AzureAd:TenantId"];
 
         options.TokenValidationParameters.ValidAudiences = new[]
         {
             configuredClientId,
             $"api://{configuredClientId}"
         };
+
+        if (string.Equals(configuredTenantId, "organizations", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(configuredTenantId, "common", StringComparison.OrdinalIgnoreCase))
+        {
+            // Multi-tenant: validate issuer format against tid claim instead of a single tenant issuer
+            options.TokenValidationParameters.IssuerValidator = (issuer, token, _) =>
+            {
+                if (token is not JwtSecurityToken jwt)
+                {
+                    throw new SecurityTokenInvalidIssuerException("Invalid token type for issuer validation.");
+                }
+
+                var tenantIdClaim = jwt.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;
+                if (string.IsNullOrWhiteSpace(tenantIdClaim))
+                {
+                    throw new SecurityTokenInvalidIssuerException("Missing tenant id claim.");
+                }
+
+                var instance = builder.Configuration["AzureAd:Instance"]?.TrimEnd('/') + "/";
+                var expectedIssuer = $"{instance}{tenantIdClaim}/v2.0";
+
+                if (!string.Equals(issuer, expectedIssuer, StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new SecurityTokenInvalidIssuerException($"Invalid issuer '{issuer}'.");
+                }
+
+                return issuer;
+            };
+        }
 
         options.TokenValidationParameters.NameClaimType = ClaimTypes.Name;
         options.TokenValidationParameters.RoleClaimType = ClaimTypes.Role;

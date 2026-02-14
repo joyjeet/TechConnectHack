@@ -16,14 +16,17 @@ const tenantId = import.meta.env.VITE_ENTRA_TENANT_ID;
 if (!tenantId) {
   throw new Error(
     "VITE_ENTRA_TENANT_ID is not set. This must be provided during build time. " +
-    "For local dev, run setup-local-dev.ps1 to configure from azd environment."
+    "For local dev, run setup-local-dev.ps1 to configure from azd environment. " +
+    "Use 'organizations' to allow any work/school tenant."
   );
 }
+
+const authorityTenant = tenantId.toLowerCase();
 
 export const msalConfig: Configuration = {
   auth: {
     clientId: clientId,
-    authority: `https://login.microsoftonline.com/${tenantId}`,
+    authority: `https://login.microsoftonline.com/${authorityTenant}`,
     redirectUri: window.location.origin, // Will be https://<container-app-url> in production
     postLogoutRedirectUri: window.location.origin,
     navigateToLoginRequestUrl: false, // Avoid redirect loops
